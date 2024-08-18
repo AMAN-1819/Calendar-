@@ -1,0 +1,54 @@
+/* Calendar.css */
+
+.calendar-container {
+    display: flex;
+    padding: 16px;
+  }
+  
+  .calendar-main {
+    flex: 1;
+  }
+  
+  .sidebar {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ff6f61 30%, #de6b9e 90%);
+    color: beige;
+    overflow-y: auto;
+  }
+  
+  .event-title {
+    margin-bottom: 30px;
+  }
+  
+  .event-modal {
+    padding: 40px;
+    background-color: beige;
+    margin: 130px auto;
+    max-width: 500px;
+  }
+  
+  .filter-label {
+    color: beige;
+  }
+  
+  .filter-select {
+    color: white;
+  }
+  
+  .event-list-item {
+    cursor: pointer;
+  }
+  
+  .event-list-item .MuiIconButton-root {
+    color: white;
+  }
+  
+  .event-title-text {
+    font-weight: bold;
+  }
+  
