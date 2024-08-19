@@ -1,54 +1,61 @@
-/* Calendar.css */
-
 .calendar-container {
-    display: flex;
-    padding: 16px;
-  }
-  
-  .calendar-main {
-    flex: 1;
-  }
-  
-  .sidebar {
-    flex: 1;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #ff6f61 30%, #de6b9e 90%);
-    color: beige;
-    overflow-y: auto;
-  }
-  
-  .event-title {
-    margin-bottom: 30px;
-  }
-  
-  .event-modal {
-    padding: 40px;
-    background-color: beige;
-    margin: 130px auto;
-    max-width: 500px;
-  }
-  
-  .filter-label {
-    color: beige;
-  }
-  
-  .filter-select {
-    color: white;
-  }
-  
-  .event-list-item {
-    cursor: pointer;
-  }
-  
-  .event-list-item .MuiIconButton-root {
-    color: white;
-  }
-  
-  .event-title-text {
-    font-weight: bold;
-  }
-  
+  /* Flex container for the calendar and sidebar */
+  display: flex;
+  padding: 16px;
+}
+
+.calendar-main {
+  /* Main calendar area takes up equal space as sidebar */
+  flex: 1;
+}
+
+.sidebar {
+  /* Sidebar settings: flexible width, padding, and scrollable overflow */
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); /* Shadow effect for depth */
+  background: linear-gradient(135deg, #ff6f61 30%, #de6b9e 90%); /* Gradient background */
+  color: beige; /* Text color */
+  overflow-y: auto; /* Allows scrolling when content exceeds height */
+}
+
+.event-title {
+  /* Styling for the title in the sidebar */
+  margin-bottom: 30px;
+}
+
+.event-modal {
+  /* Modal styling for adding/editing events */
+  padding: 40px;
+  background-color: beige;
+  margin: 130px auto;
+  max-width: 500px; /* Limits modal width */
+}
+
+.filter-label {
+  /* Label color for category filter dropdown */
+  color: beige;
+}
+
+.filter-select {
+  /* Text color inside the filter dropdown */
+  color: white;
+}
+
+.event-list-item {
+  /* Styling for each event list item */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+.event-list-item .MuiIconButton-root {
+  /* Icon button color for edit and delete actions */
+  color: white;
+}
+
+.event-title-text {
+  /* Additional styling for event titles, if needed */
+  font-weight: bold;
+}
