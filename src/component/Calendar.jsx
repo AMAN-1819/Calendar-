@@ -22,23 +22,35 @@ import FormControl from '@mui/material/FormControl';
 import './Calendar.css';
 
 const Calendar = () => {
+  // State to store the selected date
   const [value, setValue] = useState(new Date());
+  // State to store the events for each date
   const [events, setEvents] = useState({});
+  // State to manage the visibility of the "Add Event" modal
   const [open, setOpen] = useState(false);
+  // State to manage the visibility of the "Edit Event" modal
   const [editOpen, setEditOpen] = useState(false);
+  // State to store the event title entered by the user
   const [eventTitle, setEventTitle] = useState('');
+  // State to store the selected event category
   const [eventCategory, setEventCategory] = useState('');
+  // State to store the details of the event being edited
   const [editEventDetails, setEditEventDetails] = useState({ dateStr: '', index: -1, title: '', category: '' });
+  // State to store the selected category filter
   const [filterCategory, setFilterCategory] = useState('');
+  // Ref to keep track of the calendar's height for the sidebar
   const calendarRef = useRef(null);
 
+  // Available categories for the events
   const categories = ['Festival', 'Work', 'Casual', 'Others'];
 
+  // Function to handle date selection in the calendar
   const handleDateChange = (newValue) => {
     setValue(newValue);
     setOpen(true);
   };
 
+  // Function to handle event submission for adding a new event
   const handleEventSubmit = () => {
     if (!eventTitle.trim()) {
       return;
@@ -55,6 +67,7 @@ const Calendar = () => {
     setEventCategory('');
   };
 
+  // Function to handle event deletion
   const handleEventDelete = (dateStr, index) => {
     const updatedEvents = events[dateStr].filter((_, i) => i !== index);
 
@@ -70,6 +83,7 @@ const Calendar = () => {
     }
   };
 
+  // Function to open the edit modal with the details of the selected event
   const handleEventEdit = (dateStr, index) => {
     const eventToEdit = events[dateStr][index];
     setEditEventDetails({ dateStr, index, title: eventToEdit.title, category: eventToEdit.category });
@@ -78,6 +92,7 @@ const Calendar = () => {
     setEditOpen(true);
   };
 
+  // Function to handle submission of edited event details
   const handleEditSubmit = () => {
     const { dateStr, index } = editEventDetails;
     const updatedEvents = [...events[dateStr]];
@@ -92,16 +107,19 @@ const Calendar = () => {
     setEventCategory('');
   };
 
+  // Function to handle the category filter change
   const handleFilterChange = (event) => {
     setFilterCategory(event.target.value);
   };
 
+  // Sort events by date and apply category filter if selected
   const sortedEvents = Object.entries(events)
     .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
     .filter(([_, eventsOnDate]) => 
       eventsOnDate.some(event => !filterCategory || event.category === filterCategory)
     );
 
+  // Effect to set the height of the sidebar equal to the calendar height
   useEffect(() => {
     if (calendarRef.current) {
       const calendarHeight = calendarRef.current.clientHeight;
@@ -111,6 +129,7 @@ const Calendar = () => {
 
   return (
     <Box className="calendar-container">
+      {/* Main calendar component */}
       <Box className="calendar-main" ref={calendarRef}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <StaticDatePicker
@@ -138,6 +157,7 @@ const Calendar = () => {
         </LocalizationProvider>
       </Box>
 
+      {/* Sidebar to show events */}
       <Box
         id="event-sidebar"
         className="sidebar"
@@ -146,6 +166,7 @@ const Calendar = () => {
           Events Schedule
         </Typography>
 
+        {/* Dropdown for category filter */}
         <FormControl fullWidth>
           <InputLabel className="filter-label">Filter by Category</InputLabel>
           <Select
@@ -172,6 +193,7 @@ const Calendar = () => {
           </Select>
         </FormControl>
 
+        {/* Display events based on the selected filter */}
         {sortedEvents.length > 0 ? (
           <List>
             {sortedEvents.map(([date, eventsOnDate]) => {
